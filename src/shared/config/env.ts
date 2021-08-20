@@ -16,4 +16,4 @@ export const API_URL = getEnvVar("VITE_API_URL");
 export const DEV = getEnvVar("DEV");
 export const PROD = getEnvVar("PROD");
 
-console.log({ MODE, API_URL, DEV, PROD });
+console.log({ env: import.meta.env });
