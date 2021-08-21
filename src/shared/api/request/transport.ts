@@ -4,6 +4,7 @@ import {
   RECONNECT_TIMEOUT,
   PING_INTERVAL,
 } from "shared/constans";
+import { ReqParams } from "./common";
 
 import { EventEmitter } from "./event-emitter";
 const connections: any = new Set();
@@ -27,10 +28,12 @@ export class CommonTransport extends EventEmitter {
   callTimeout: any;
   pingInterval: any;
   reconnectTimeout: any;
+  token: string;
 
   constructor({ url, options = {} }: { url: any; options?: any }) {
     super();
     this.url = url;
+    this.token = "DEBUG";
     this.socket = null;
     this.api = {};
     this.callId = 0;
@@ -42,6 +45,8 @@ export class CommonTransport extends EventEmitter {
     this.callTimeout = options.callTimeout || CALL_TIMEOUT;
     this.pingInterval = options.pingInterval || PING_INTERVAL;
     this.reconnectTimeout = options.reconnectTimeout || RECONNECT_TIMEOUT;
+
+    console.log({ transport: this });
   }
 
   static create(url: string, options: any) {
@@ -50,7 +55,6 @@ export class CommonTransport extends EventEmitter {
   }
 
   message(data: any) {
-    console.log("Message", { data });
     if (data === "{}") return;
     this.lastActivity = new Date().getTime();
     let packet: any;
@@ -82,21 +86,19 @@ class HttpTransport extends CommonTransport {
     this.connected = false;
   }
 
-  async send(data: any) {
+  async send<T>(data: ReqParams<T>) {
+    let body: any;
+    try {
+      body = JSON.stringify({ ...data, token: "DEBUG" });
+    } catch (error) {
+      console.warn("[send error]", error);
+    }
     this.lastActivity = new Date().getTime();
-    // const token = "DEBUG";
-    // if (token) requestConfig.headers["Authorization"] = "Basic " + token;
-    console.log("SEND", {
-      url: this.url,
-      data,
-      lastActivity: this.lastActivity,
-    });
-
     return await fetch(this.url, {
       method: request.method,
       credentials: request.credentials,
       headers: request.headers,
-      body: { ...data, token: "DEBUG" },
+      body,
     }).then((res: any) => {
       const { status } = res;
       if (status === 200) {
@@ -165,7 +167,7 @@ class WebsocketTransport extends CommonTransport {
     this.socket = null;
   }
 
-  send(data: any) {
+  async send(data: any) {
     if (!this.connected) return;
     this.lastActivity = new Date().getTime();
     this.socket.send(data);

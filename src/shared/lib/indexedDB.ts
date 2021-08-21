@@ -1,90 +1,125 @@
-import { rejects } from "assert/strict";
-import { resolve } from "path/posix";
+const DB_NAME = "indexedDB";
+const DB_VERSION = 2;
+const DB_STORE_NAME_1 = "my_story_1";
+const DB_STORE_NAME_2 = "my_story_2";
 
-const DB_NAME = 'DB_NAME';
-const DB_VERSION = 1;
-const DB_STORE_NAME = 'DB_STORE_NAME';
+let database: any;
+let transaction: any;
 
-export let db: IDBDatabase;
+const request = indexedDB.open(DB_NAME, DB_VERSION);
+console.log("IDBDatabase", request);
 
-export async function init () {
-    const request = indexedDB.open(DB_NAME, DB_VERSION);
-    request.onupgradeneeded = (event: any) => {
-        console.log("[indexDB/init] onupgradeneeded", event)
-        let db = request.result;
-        
-        if (!db.objectStoreNames.contains(DB_STORE_NAME)){
-            db.createObjectStore(DB_STORE_NAME, { keyPath: 'id' });
-        };
-    
-        if (!db.objectStoreNames.contains('chat')){
-            db.createObjectStore('chat', { autoIncrement: true });
-        };
+request.onupgradeneeded = function () {
+  let db = request.result;
 
-        if (!db.objectStoreNames.contains('iam')){
-            db.createObjectStore('iam');
-        }; 
+  if (!db.objectStoreNames.contains(DB_STORE_NAME_1)) {
+    db.createObjectStore(DB_STORE_NAME_1, { keyPath: "key" });
+  }
+
+  if (!db.objectStoreNames.contains(DB_STORE_NAME_2)) {
+    db.createObjectStore(DB_STORE_NAME_2, { autoIncrement: true });
+  }
+
+  switch (db.version) {
+    case 0: {
+      console.log("DB version 0");
+      break;
     }
-    
-    request.onerror = (event: any) => {
-        console.log("[indexDB/init] onerror", event)
-        deleteDB(DB_NAME)
-        location.reload()
+    case 1: {
+      console.log("DB version 1");
+      break;
     }
-    request.onsuccess = (event: any) => {
-        console.log("[indexDB/init] onsuccess", event)
-        db = event.target.result
-        db.onversionchange = function() {
-            db.close();
-            console.warn("База данных устарела, пожалуста, перезагрузите страницу.")
-        };
+  }
+};
 
-    }
+request.onerror = function () {
+  console.error("Error", request.error);
+};
 
+request.onsuccess = function () {
+  let db = request.result;
+  // продолжить работу с базой данных, используя объект db
+  db.onversionchange = function () {
+    db.close();
+    alert("База данных устарела, пожалуста, перезагрузите страницу.");
+  };
 
+  database = db;
+  transaction = db.transaction(DB_STORE_NAME_1, "readwrite");
+  // const my_story_2 = db.transaction(DB_STORE_NAME_2, "readwrite");
+};
+
+async function getItem(name: string) {
+  console.log("[indexDB/getItem]", { name, transaction });
+  //   return new Promise((resolve, rejects) => {
+  //     const transaction = db.transaction([DB_STORE_NAME], "readwrite");
+  //     const store = transaction.objectStore(DB_STORE_NAME);
+  //     const req = store.get(name);
+
+  //     console.log({ db, transaction, store, req });
+  //     req.onsuccess = function () {
+  //       console.log(req.result);
+  //       resolve(req.result);
+  //     };
+  //     req.onerror = function () {
+  //       console.log("Ошибка", req.error);
+  //       rejects(req.error);
+  //     };
+  //   });
 }
 
-export async function deleteDB (name: string) {
-    const request = indexedDB.deleteDatabase(name)
-    request.onerror = (event: any) => {
-        console.log("[indexDB/deleteDB] onerror", event)
-    }
-    request.onsuccess = (event: any) => {
-        console.log("[indexDB/deleteDB] onsuccess", event)
-    }
+async function setItem(name: string, value: any) {
+  console.log("[indexDB/setItem]", { name, value });
+  //   return new Promise((resolve, rejects) => {
+  //     const transaction = db.transaction([DB_STORE_NAME], "readwrite");
+  //     const store = transaction.objectStore(DB_STORE_NAME);
+  //     const req = store.put({ [name]: value });
+  //     req.onsuccess = function () {
+  //       console.log(req.result);
+  //       resolve(req.result);
+  //     };
+  //     req.onerror = function () {
+  //       console.log("Ошибка", req.error);
+  //       rejects(req.error);
+  //     };
+  //   });
 }
 
-export async function getItem (key: string) {
-    return new Promise((resolve, rejects) => {
-        const transaction = db.transaction([DB_STORE_NAME], "readwrite");
-        const books = transaction.objectStore(DB_STORE_NAME);
-        const req = books.get(key)
-        req.onsuccess = function() {
-            console.log("Лови книгу", req.result);
-            resolve(req.result)
-        };
-        req.onerror = function() {
-            console.log("Ошибка", req.error);
-            rejects(req.error)
-        };
-    })
+export const storage = {
+  getItem,
+  setItem,
+};
+
+// async function initDB() {
+//   const request = indexedDB.open(DB_NAME, DB_VERSION);
+//   request.onupgradeneeded = (event: any) => {
+//     let db = request.result;
+
+//     if (!db.objectStoreNames.contains(DB_STORE_NAME)) {
+//       db.createObjectStore(DB_STORE_NAME, { autoIncrement: true });
+//     }
+//   };
+
+//   request.onerror = (event: any) => {
+//     deleteDB(DB_NAME);
+//     location.reload();
+//   };
+
+//   request.onsuccess = (event: any) => {
+//     db = event.target.result;
+//     db.onversionchange = function () {
+//       db.close();
+//       console.warn("База данных устарела, пожалуста, перезагрузите страницу.");
+//     };
+//   };
+// }
+
+async function deleteDB(name: string) {
+  const request = indexedDB.deleteDatabase(name);
+  request.onerror = (event: any) => {
+    console.log("[indexDB/deleteDB] onerror", event);
+  };
+  request.onsuccess = (event: any) => {
+    console.log("[indexDB/deleteDB] onsuccess", event);
+  };
 }
-
-export async function setItem (key: string, value: any) {
-    return new Promise((resolve, rejects) => {
-        const transaction = db.transaction([DB_STORE_NAME], "readwrite");
-        const books = transaction.objectStore(DB_STORE_NAME);
-        const book = {id: 'js',price: 10,created: new Date(), [key]: value};
-        const req = books.put(book);
-        req.onsuccess = function() {
-            console.log("Книга добавлена в хранилище", req.result);
-            resolve(req.result)
-        };
-        req.onerror = function() {
-            console.log("Ошибка", req.error);
-            rejects(req.error)
-        };
-
-    })
-}
-

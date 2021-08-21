@@ -9,6 +9,7 @@ export function message(response: any) {
     return;
   }
 
+  if (packet.data) console.log("[message data]", packet.data);
   if (packet.callType) console.log("[message callType]", packet.callType);
   if (packet.msg) console.log("[message msg]", packet.msg);
   if (packet.error) console.log("[message error]", packet.error);

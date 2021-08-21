@@ -1,1 +1,2 @@
-export { request } from "./fetch/request";
+export * as request from "./request";
+export * from "./rest";

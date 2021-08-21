@@ -1,24 +1,26 @@
-interface CustomStorage {
-  getItem: <T>(name: string) => T;
-  setItem: <T>(name: string, value: T) => void;
-}
+let storage: any = null;
 
-let storage: CustomStorage;
-
-export async function setItem<T>(name: string, value: T) {
+export async function setItem(name: string, value: any) {
+  console.log("[storage] setItem", storage);
+  if (!storage) throw "Storage not found";
   if (typeof storage.setItem !== "function") {
     throw "Storage should implement setItem method";
   }
-  storage.setItem<typeof value>(name, value);
+  storage.setItem(name, value);
 }
 
-export async function getItem<T>(name: string) {
-  if (typeof storage.setItem !== "function") {
+export async function getItem(name: string) {
+  console.log("[storage] getItem", storage);
+  if (!storage) throw "Storage not found";
+  if (typeof storage.getItem !== "function") {
     throw "Storage should implement getItem method";
   }
-  return storage.getItem<T>(name);
+  return storage.getItem(name);
 }
 
-export const setStorage = (instanse: CustomStorage) => {
+export const setStorage = (instanse: any) => {
   storage = instanse;
+  console.log({ storage });
 };
+
+console.log({ storage });
