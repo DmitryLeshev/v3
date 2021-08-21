@@ -1,12 +1,10 @@
-// this.lastActivity = new Date().getTime();
-
 import { request } from "shared/config";
 import { message } from "./message";
 
-export function send(data: any) {
+export async function send(data: any) {
   const token = "DEBUG";
   if (token) request.headers["Authorization"] = "Basic " + token;
-  fetch(request.url, {
+  return await fetch(request.hettpUrl, {
     method: request.method,
     credentials: request.credentials,
     headers: request.headers,

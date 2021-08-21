@@ -13,5 +13,6 @@ export function message(response: any) {
   if (packet.msg) console.log("[message msg]", packet.msg);
   if (packet.error) console.log("[message error]", packet.error);
   if (!packet.status) console.log("[message status]", packet.status);
+
   return packet;
 }
