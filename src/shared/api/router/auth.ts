@@ -1,4 +1,4 @@
-import { apiInstance, Response } from "./base";
+import { apiInstance, Response } from "./_base";
 
 const BASE_URL = "auth";
 

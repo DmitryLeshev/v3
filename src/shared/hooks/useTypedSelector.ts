@@ -4,5 +4,5 @@
 
 // const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 // export default useTypedSelector;
-
-export {};
+const useTypedSelector = {};
+export default useTypedSelector;

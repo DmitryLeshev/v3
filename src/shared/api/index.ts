@@ -1,2 +1,3 @@
-export * as request from "./request";
-export * from "./rest";
+export * as routerApi from "./router";
+export * as serverApi from "./server";
+export * as placeholderApi from "./placeholder";

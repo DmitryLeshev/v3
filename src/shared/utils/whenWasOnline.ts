@@ -1,9 +1,6 @@
 import declOfNum from "./declOfNum";
 import { transformDate, DD_MM_YYYY, hh_mm_DD_MM_YYYY } from "./transformDate";
-
-const MINUTS = 60;
-const HOUR = MINUTS * 60;
-const DAY = HOUR * 24;
+import { MINUTE, HOUR, DAY } from "shared/constans";
 
 export default function whenWasOnline(timestamp: number) {
   const date = new Date();
@@ -19,7 +16,7 @@ export default function whenWasOnline(timestamp: number) {
     )}] Привет из будущего`;
 
   if (secondsLastLogin < HOUR) {
-    const count = Math.floor(secondsLastLogin / MINUTS);
+    const count = Math.floor(secondsLastLogin / MINUTE);
     return `Был ${count} ${declOfNum(count, [
       "минуту",
       "минуты",

@@ -1,4 +1,4 @@
-import { request } from "shared/api";
+import { request } from "shared/utils";
 import { request as reqConfig } from "shared/config";
 
 export type Response<T> = {
@@ -14,7 +14,6 @@ export const apiInstance =
   (controller: string) =>
   async <T>(data: any): Promise<Response<T>> => {
     const [method, params] = Object.entries(data)[0];
-    console.log({ controller, method, params, data });
     return await http.send({ path: `${controller}/${method}`, args: params });
   };
 

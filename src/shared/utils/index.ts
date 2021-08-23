@@ -1,13 +1,14 @@
-import sleep from './sleep';
-import isEquals from './isEquals';
-import * as _trDate from './transformDate';
-import * as deviceType from './deviceType';
-import declOfNum from './declOfNum';
-import whenWasOnline from './whenWasOnline';
-import cvss from './cvss';
-import bytesToSize from './bytesToSize';
-import { downloadAgent } from './downloadAgent';
-import * as validations from './validations';
+import sleep from "./sleep";
+import isEquals from "./isEquals";
+import * as _trDate from "./transformDate";
+import * as deviceType from "./deviceType";
+import declOfNum from "./declOfNum";
+import whenWasOnline from "./whenWasOnline";
+import cvss from "./cvss";
+import bytesToSize from "./bytesToSize";
+import { downloadAgent } from "./downloadAgent";
+import * as validations from "./validations";
+import * as request from "./request";
 
 export {
   sleep,
@@ -20,4 +21,5 @@ export {
   bytesToSize,
   validations,
   downloadAgent,
+  request,
 };

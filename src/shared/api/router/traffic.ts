@@ -1,4 +1,4 @@
-import { apiInstance, Response } from "./base";
+import { apiInstance, Response } from "./_base";
 import type { Traffic } from "./models";
 
 const BASE_PATH = "main";

@@ -1,4 +1,4 @@
-import { apiInstance, Response } from "./base";
+import { apiInstance, Response } from "./_base";
 import type { Router, RouterRange } from "./models";
 
 const BASE_PATH = "setting";

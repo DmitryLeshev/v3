@@ -45,8 +45,6 @@ export class CommonTransport extends EventEmitter {
     this.callTimeout = options.callTimeout || CALL_TIMEOUT;
     this.pingInterval = options.pingInterval || PING_INTERVAL;
     this.reconnectTimeout = options.reconnectTimeout || RECONNECT_TIMEOUT;
-
-    console.log({ transport: this });
   }
 
   static create(url: string, options: any) {
@@ -86,7 +84,7 @@ class HttpTransport extends CommonTransport {
     this.connected = false;
   }
 
-  async send<T>(data: ReqParams<T>) {
+  async send(data: any) {
     let body: any;
     try {
       body = JSON.stringify({ ...data, token: "DEBUG" });

@@ -3,19 +3,29 @@ import { withProviders } from "./providers";
 
 import { routerApi, placeholderApi } from "shared/api";
 import { setStorage, token } from "shared/storage";
-import { indexedDB, localStorage } from "shared/lib";
+import { indexedDB, localStorage, sessionStorage } from "shared/lib";
+import { Button, Input } from "shared/ui";
+import { useInput } from "shared/hooks";
 
-// setStorage(indexedDB.storage);
-// token.setToken("MY_TOKEN_TEST");
+const storages = {
+  indexedDB: indexedDB.Storage.create(),
+  localStorage: localStorage.Storage.create(),
+  sessionStorage: sessionStorage.Storage.create(),
+};
+
+Object.assign(window, { storages });
 
 const App = () => {
+  const input = useInput("");
+
   async function fetchApi() {
-    const res = await routerApi.auth.status();
-    console.log({ res });
+    const res = await placeholderApi.todos.getTasksList();
+    console.log("fetchApi", { res });
   }
 
   async function setToken() {
-    const t = await token.setToken("My token");
+    console.log("[APP] input", input.value);
+    const t = await token.setToken(input.value);
     console.log("setToken", t);
   }
 
@@ -25,12 +35,18 @@ const App = () => {
   }
 
   useEffect(() => {
-    setStorage(indexedDB);
+    setStorage(storages.sessionStorage);
     fetchApi();
-    setToken();
-    getToken();
   }, []);
-  return <>App</>;
+
+  return (
+    <>
+      App
+      <Input {...input} />
+      <Button onClick={() => getToken()}>getToken</Button>
+      <Button onClick={() => setToken()}>setToken</Button>
+    </>
+  );
 };
 
 export default withProviders(App);

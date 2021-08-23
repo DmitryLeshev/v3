@@ -7,5 +7,5 @@ export async function setTheme(theme: Theme): Promise<void> {
 }
 
 export async function getTheme(): Promise<Theme> {
-  return await storage.getItem<Theme>("theme");
+  return await storage.getItem("theme");
 }

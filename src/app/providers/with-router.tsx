@@ -6,6 +6,6 @@ import { router } from "shared/lib";
 export const withRouter = (component: () => React.ReactNode) => () =>
   (
     <Router history={router.history}>
-      <Suspense fallback={"Loading..."}>{component()}</Suspense>
+      <Suspense fallback={"Loader..."}>{component()}</Suspense>
     </Router>
   );
