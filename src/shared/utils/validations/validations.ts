@@ -1,4 +1,4 @@
-import declOfNum from "./declOfNum";
+import declOfNum from "../declOfNum/declOfNum";
 
 export const maxLength = (max: number) => (value: string) => {
   return value && value.length > max

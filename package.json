@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -14,12 +15,16 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.15.0",
     "@types/compose-function": "^0.0.30",
+    "@types/jest": "^27.0.1",
     "@types/node": "^16.6.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",
     "@vitejs/plugin-react-refresh": "^1.3.1",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.5",
     "typescript": "^4.3.2",
     "vite": "^2.4.4"
   }

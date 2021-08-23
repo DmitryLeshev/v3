@@ -1,5 +1,9 @@
-import declOfNum from "./declOfNum";
-import { transformDate, DD_MM_YYYY, hh_mm_DD_MM_YYYY } from "./transformDate";
+import declOfNum from "../declOfNum/declOfNum";
+import {
+  transformDate,
+  DD_MM_YYYY,
+  hh_mm_DD_MM_YYYY,
+} from "../transformDate/transformDate";
 import { MINUTE, HOUR, DAY } from "shared/constans";
 
 export default function whenWasOnline(timestamp: number) {
