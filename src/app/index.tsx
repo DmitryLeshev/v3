@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { withProviders } from "./providers";
 
 import { routerApi, placeholderApi } from "shared/api";
-import { setStorage, token } from "shared/storage";
+import { setStorage, token } from "shared/storages";
 import { indexedDB, localStorage, sessionStorage } from "shared/lib";
 import { Button, Input } from "shared/ui";
 import { useInput } from "shared/hooks";

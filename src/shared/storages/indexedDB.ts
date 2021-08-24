@@ -82,7 +82,7 @@ const DB_STORE_NAME_2 = "my_story_2";
 //   });
 // }
 
-// export const storage = {
+// export const storages = {
 //   getItem,
 //   setItem,
 // };
@@ -97,7 +97,7 @@ async function deleteDB(name: string) {
   };
 }
 
-export class Storage {
+class Storage {
   database: IDBDatabase | undefined;
   constructor() {
     this.init();
@@ -193,3 +193,5 @@ export class Storage {
     });
   }
 }
+
+export const indexedDb = Storage.create()

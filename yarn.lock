@@ -1305,6 +1305,7 @@
     "estraverse" "^5.2.0"
     "esutils" "^2.0.2"
     "optionator" "^0.8.1"
+    "source-map" "~0.6.1"
   optionalDependencies:
     "source-map" "~0.6.1"
 
@@ -1813,6 +1814,7 @@
     "@types/node" "*"
     "anymatch" "^3.0.3"
     "fb-watchman" "^2.0.0"
+    "fsevents" "^2.3.2"
     "graceful-fs" "^4.2.4"
     "jest-regex-util" "^27.0.6"
     "jest-serializer" "^27.0.6"
@@ -2642,6 +2644,8 @@
   "integrity" "sha512-s8H00ZsRi29M2/lGdm1u8DJpJ9ML8SUOpVVBd33XNeEeL3NVaTiUcSBHzBdF3eAyR0l7VSpsuoVUGrRHq7aPwQ=="
   "resolved" "https://registry.npmjs.org/rollup/-/rollup-2.56.2.tgz"
   "version" "2.56.2"
+  dependencies:
+    "fsevents" "~2.3.2"
   optionalDependencies:
     "fsevents" "~2.3.2"
 
@@ -2974,6 +2978,7 @@
   "version" "2.5.0"
   dependencies:
     "esbuild" "^0.12.17"
+    "fsevents" "~2.3.2"
     "postcss" "^8.3.6"
     "resolve" "^1.20.0"
     "rollup" "^2.38.5"
