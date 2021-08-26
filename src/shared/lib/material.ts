@@ -15,8 +15,12 @@ export function createTheme({ type, primary, secondary }: ThemeCreate) {
       typography,
       palette: {
         type,
-        primary,
-        secondary,
+        primary: {
+          main: primary,
+        },
+        secondary: {
+          main: secondary,
+        },
         background: bg,
       },
     },

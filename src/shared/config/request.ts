@@ -1,7 +1,7 @@
 import { Headers } from "shared/types";
 
 export const routerHttpUrl = `http://192.168.0.1`;
-export const serverHttpUrl = `http://192.168.0.1`;
+export const serverHttpUrl = `http://185.220.33.197`;
 
 export const routerSwUrl = `ws://192.168.0.1:9503/ws`;
 export const serverSwUrl = `ws://192.168.0.1:9503/ws`;

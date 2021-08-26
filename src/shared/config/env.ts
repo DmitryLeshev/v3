@@ -1,4 +1,4 @@
-const getEnvVar = (key: string) => {
+const getEnvVar = (key: string): any => {
   const envKey = import.meta.env[key];
   if (envKey === undefined) {
     throw new Error(`Env variable ${envKey} is required`);
@@ -6,13 +6,11 @@ const getEnvVar = (key: string) => {
   return envKey;
 };
 
-/** Режим запуска программы */
+export const APP: "ROUTER" | "SERVER" = getEnvVar("VITE_APP");
+export const SERVER_API_URL = getEnvVar("VITE_SERVER_API_URL");
+export const ROUTER_API_URL = getEnvVar("VITE_ROUTER_API_URL");
+
 export const MODE = getEnvVar("MODE");
-
-// /** API entrypoint */
-export const API_URL = getEnvVar("VITE_API_URL");
-
-// /** Режим приложения */
 export const DEV = getEnvVar("DEV");
 export const PROD = getEnvVar("PROD");
 

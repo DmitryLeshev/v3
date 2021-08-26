@@ -1,4 +1,4 @@
-import { Theme as MuTheme, PaletteColorOptions } from "@material-ui/core";
+import { Theme as MuTheme } from "@material-ui/core";
 
 export type Theme = MuTheme & {
   drawer: {
@@ -25,6 +25,6 @@ export type ThemeInitialState = {
 
 export type ThemeCreate = {
   type: ThemeType;
-  primary: PaletteColorOptions;
-  secondary: PaletteColorOptions;
+  primary: string;
+  secondary: string;
 };

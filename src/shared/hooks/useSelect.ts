@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { IItemMenu } from "shared/ui/components/Select";
+
+export interface IItemMenu {
+  value: number;
+  label: string | React.ReactElement;
+}
 
 interface Props {
   items: IItemMenu[];

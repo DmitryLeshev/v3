@@ -1,2 +1,2 @@
-import * as Icon from "./icons";
-import * as png from "./png";
+export * as Icon from "./icons";
+export * as png from "./png";
