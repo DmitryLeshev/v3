@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{
-  className: string;
+  className?: string;
 }>;
 
 const ScrollableContentiner = (props: Props) => {

@@ -12,7 +12,7 @@ import {
   useTypedSelector,
 } from "shared/hooks";
 import { withThemeContext } from "shared/hocs";
-import { IThemeContext } from "shared/contexts/theme";
+import { ThemeContext } from "shared/contexts/theme";
 
 function setThemeToLocalStorage(theme: any) {
   localStorage.setItem("setting.theme", JSON.stringify(theme));
@@ -26,7 +26,7 @@ function getThemeToLocalStorage() {
   }
 }
 
-interface Props extends IThemeContext {}
+interface Props extends ThemeContext {}
 
 const PaletteColors = ({ changeColor }: Props) => {
   const classes = useStyles();

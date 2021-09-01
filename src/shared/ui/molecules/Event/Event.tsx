@@ -1,4 +1,4 @@
-import { ITheme } from "shared/ui/theme/theme";
+import { Theme } from "shared/types";
 import { createStyles, makeStyles } from "@material-ui/core";
 import React from "react";
 import { CardHeader, CardBody } from "./components";
@@ -71,7 +71,7 @@ const Event = ({ event, isIncident }: Props) => {
 
 export default Event;
 
-const useStyles = makeStyles((theme: ITheme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     event: {
       backgroundColor: theme.palette.background.paper,

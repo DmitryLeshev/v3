@@ -2,9 +2,9 @@ import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
-import { routes, env } from "shared/config";
+import { env } from "shared/config";
 import { Theme } from "shared/types";
-import { ROUTES } from "pages";
+import { Atom } from "shared/ui";
 
 export const SiteNavigation = () => {
   const { APP } = env;
@@ -12,11 +12,8 @@ export const SiteNavigation = () => {
   const classes = useStyles();
   return (
     <nav className={classes.nav}>
-      {ROUTES[APP ?? "ROUTER"].map((route, idx) => (
-        <Link key={idx} className={classes.link} to={route.path}>
-          {route.path}
-        </Link>
-      ))}
+      {/* <Atom.ListItem component={Link} className={classes.link} to={'/home'}> */}
+      <Atom.ListItem className={classes.link}>Home</Atom.ListItem>
     </nav>
   );
 };
@@ -25,11 +22,9 @@ export const SettingsNavigation = () => {
   const classes = useStyles();
   return (
     <nav className={classes.nav}>
-      {routes.SETTINGS_NAVIGATION.map((link) => (
-        <Link key={link.id} className={classes.link} to={link.url()}>
-          {link.title}
-        </Link>
-      ))}
+      <Link className={classes.link} to={"/home"}>
+        Home
+      </Link>
     </nav>
   );
 };

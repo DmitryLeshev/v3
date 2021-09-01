@@ -14,7 +14,7 @@ import { TasksTypeImg, TasksType } from "../config/task";
 import { FlashOnIcon, IconRadiation } from "shared/assets/icons";
 import dependencies from "../dependencies";
 import { useRouteMatch } from "react-router";
-import { ITheme } from "shared/ui/theme/theme";
+import { Theme } from "shared/types";
 
 const { iconColor } = dependencies.icon;
 
@@ -31,7 +31,7 @@ const HeaderCard = ({
   priority,
 }: any) => {
   const { t } = useTranslation();
-  const { error, success, warning } = useTheme<ITheme>().palette;
+  const { error, success, warning } = useTheme<Theme>().palette;
   const {
     url,
     params: { taskId },

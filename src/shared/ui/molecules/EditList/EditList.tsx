@@ -2,7 +2,7 @@ import React, { memo, useState } from "react";
 import { createStyles, makeStyles } from "@material-ui/core";
 
 import { useInput } from "shared/hooks";
-import { ITheme } from "shared/ui/theme/theme";
+import { Theme } from "shared/types";
 import { Input, IconButton } from "shared/ui/components";
 import { AddIcon, RemoveIcon } from "shared/assets/icons";
 
@@ -77,7 +77,7 @@ export default memo(function EditList({ inputs, setInputs }: Props) {
   );
 });
 
-const useStyles = makeStyles((theme: ITheme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     wrapper: {
       display: "flex",

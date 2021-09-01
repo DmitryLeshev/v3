@@ -1,5 +1,5 @@
 import { request } from "shared/utils";
-import { request as reqConfig } from "shared/config";
+import { Headers } from "shared/types";
 
 export type Response<T> = {
   status?: boolean;
@@ -7,21 +7,21 @@ export type Response<T> = {
   msg?: string;
 };
 
-const http = request.Transport.create(reqConfig.routerHttpUrl, {});
-// const ws = request.Transport.create(reqConfig.routerSwUrl, {});
+const url = `http://192.168.0.1`;
+const headers: Headers = {
+  "Content-Type": "application/json",
+  Accept: "/",
+  "Cache-Control": "no-cache",
+};
 
 export const apiInstance =
   (controller: string) =>
   async <T>(data: any): Promise<Response<T>> => {
     const [method, params] = Object.entries(data)[0];
-    return await http.send({ path: `${controller}/${method}`, args: params });
+    return await request.send(url, {
+      method: "POST",
+      credentials: "include",
+      headers,
+      body: JSON.stringify({ path: `${controller}/${method}`, args: params }),
+    });
   };
-
-Object.assign(window, {
-  send: async (data: any) => {
-    console.log("[SEND]", { data });
-    const res = await http.send(data);
-    console.log("[SEND]", { res });
-    return res;
-  },
-});

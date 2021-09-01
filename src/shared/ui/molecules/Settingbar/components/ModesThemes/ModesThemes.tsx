@@ -3,9 +3,9 @@ import React from "react";
 import { Switch, Typography, makeStyles } from "@material-ui/core";
 import { useActions, useTypedSelector } from "shared/hooks";
 import { withThemeContext } from "shared/hocs";
-import { IThemeContext } from "shared/contexts/theme";
+import { ThemeContext } from "shared/contexts/theme";
 
-interface Props extends IThemeContext {}
+interface Props extends ThemeContext {}
 
 const ModesThemes = ({ mode, toggleMode }: Props) => {
   const classes = useStyles();

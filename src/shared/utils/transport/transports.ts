@@ -1,10 +1,8 @@
-import { request } from "shared/config";
 import {
   CALL_TIMEOUT,
   RECONNECT_TIMEOUT,
   PING_INTERVAL,
 } from "shared/constans";
-import { ReqParams } from "./common";
 
 import { EventEmitter } from "./event-emitter";
 const connections: any = new Set();
@@ -93,9 +91,9 @@ class HttpTransport extends CommonTransport {
     }
     this.lastActivity = new Date().getTime();
     return await fetch(this.url, {
-      method: request.method,
-      credentials: request.credentials,
-      headers: request.headers,
+      method: "POST",
+      credentials: "include",
+      headers: {},
       body,
     }).then((res: any) => {
       const { status } = res;

@@ -15,7 +15,7 @@
 //   LIGHT = "light",
 // }
 
-// interface IThemeState {
+// interface ThemeState {
 //   mode: Mode;
 //   primary: string;
 //   secondary: string;
@@ -28,7 +28,7 @@
 
 // export const withTheme = (Child: React.ComponentType) => {
 //   return (props: any) => {
-//     const [theme, setTheme] = React.useState<IThemeState>(initialState);
+//     const [theme, setTheme] = React.useState<ThemeState>(initialState);
 
 //     const newTheme = useCustomTheme({
 //       type: theme.mode,

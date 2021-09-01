@@ -1,14 +1,10 @@
 import React, { lazy } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { env } from "shared/config";
-import { paths } from "./paths";
-
 const LogIn = lazy(() => import("./login"));
 
 export const Routing = ({ isAuth }: { isAuth: boolean }) => {
-  const APP: "ROUTER" | "SERVER" = env.APP;
-  console.log("[Routing]", { isAuth, APP });
+  console.log("[Routing]", { isAuth });
   return (
     <Switch>
       <Route exact path={"/login"} component={LogIn} />
@@ -17,12 +13,33 @@ export const Routing = ({ isAuth }: { isAuth: boolean }) => {
         path={"/activation"}
         component={() => <h1>"activation"</h1>}
       />
-      {ROUTES[APP ?? "ROUTER"].map((route, idx) => {
-        return <Route key={idx} {...route} />;
-      })}
-      <Redirect to={isAuth ? "/" : "/login"} />
+      <Redirect to={true ? "/" : "/login"} />
     </Switch>
   );
+};
+
+export const paths = {
+  login: () => "/login",
+  activation: () => "/activation",
+  home: () => "/home",
+  tasks: () => "/tasks",
+  incidents: () => "/incidents",
+  devices: () => "/devices",
+  settings: () => "/settings",
+  systems: () => "/systems",
+  users: () => "/users",
+  cardEdit: (cardId = ":cardId") => `/card/${cardId}/edit`,
+  cardCreate: () => `/card/new`,
+  oauthDone: () => "/accesso/done",
+  user: (username = ":username") => `/u/${username}`,
+  search: (query = "") => {
+    if (query) return `/search?query=${query}`;
+    return "/search";
+  },
+  /**
+   * @example
+   * user: (username = ':username') => `/@${username}`,
+   */
 };
 
 export const ROUTES = {

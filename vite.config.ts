@@ -11,8 +11,8 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: "_web",
-        replacement: path.resolve(__dirname, "./src/_web"),
+        find: "app",
+        replacement: path.resolve(__dirname, "./src/app"),
       },
       {
         find: "shared",

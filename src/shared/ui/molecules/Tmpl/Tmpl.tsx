@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { createStyles, makeStyles } from "@material-ui/core";
 
-import { Page } from "shared/components";
-import { ITheme } from "shared/ui/theme/theme";
+import { Molec } from "shared/ui";
+import { Theme } from "shared/types";
 import clsx from "clsx";
 
 interface Props {
@@ -37,7 +37,7 @@ export default memo(function Home(props: Props) {
 
   const classes = useStyles();
   return (
-    <Page title={title}>
+    <Molec.Page title={title}>
       <div className={classes.template}>
         {topbar && <div className={classes.topbar}>{topbar}</div>}
         {leftbar && <div className={classes.leftbar}>{leftbar}</div>}
@@ -52,11 +52,11 @@ export default memo(function Home(props: Props) {
         {rightbar && <div className={classes.rightbar}>{rightbar}</div>}
         {bottombar && <div className={classes.bottombar}>{bottombar}</div>}
       </div>
-    </Page>
+    </Molec.Page>
   );
 });
 
-const useStyles = makeStyles((theme: ITheme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     template: {
       flexGrow: 1,

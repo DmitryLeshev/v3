@@ -1,9 +1,16 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement } from "react";
 
-import { ListItem } from '@material-ui/core';
+import { ListItem } from "@material-ui/core";
 
-interface Props {}
+type Props = {
+  className?: string;
+  button?: true;
+  component?: any;
+  children?: any;
+};
 
-export default function UIListItem(props: any): ReactElement {
-  return <ListItem {...props} />;
+export default function UIListItem(props: Props): ReactElement {
+  const { button, ...rest } = props;
+  if (button) return <ListItem button {...rest} />;
+  return <ListItem {...rest} />;
 }

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { List, ListItem, Typography } from "shared/ui/components";
 import { createStyles, makeStyles } from "@material-ui/core";
-import { ITheme } from "shared/ui/theme/theme";
+import { Theme } from "shared/types";
 import clsx from "clsx";
 
 export interface EnumerationItem {
@@ -58,7 +58,7 @@ export default memo(function Enumeration({ items }: Props) {
   );
 });
 
-const useStyles = makeStyles((theme: ITheme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     list: {},
     item: {

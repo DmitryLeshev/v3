@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
   title?: string;
   description?: string;
-  className: string;
+  className?: string;
 }
 
 export default function Page({

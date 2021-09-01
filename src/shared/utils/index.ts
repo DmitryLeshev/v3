@@ -9,6 +9,7 @@ import bytesToSize from "./bytesToSize/bytesToSize";
 import { downloadAgent } from "./__downloadAgent/downloadAgent";
 import * as validations from "./validations/validations";
 import * as request from "./request";
+import * as transport from "./transport";
 
 export {
   sleep,
@@ -22,4 +23,5 @@ export {
   validations,
   downloadAgent,
   request,
+  transport,
 };

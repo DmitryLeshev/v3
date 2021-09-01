@@ -19,7 +19,7 @@
 // import { withBarsContext } from "shared/hocs";
 // import { IBarsContext } from "shared/contexts/bars";
 
-// import { ITheme } from "shared/ui/theme/theme";
+// import { Theme } from "shared/types";
 
 // import { ContentsTitle, PaletteColors, ModesThemes } from "./components";
 // import { useTranslation } from "react-i18next";
@@ -133,7 +133,7 @@
 //   );
 // }
 
-// const useStyles = makeStyles((theme: ITheme) =>
+// const useStyles = makeStyles((theme: Theme) =>
 //   createStyles({
 //     settingbar: {
 //       display: "flex",

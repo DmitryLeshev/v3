@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 
 import { createStyles, makeStyles } from "@material-ui/core";
-import { ITheme } from "shared/ui/theme/theme";
+import { Theme } from "shared/types";
 import { Css, DotNet, File, ComputerIcon } from "shared/assets/icons";
 import { ScrollableContentiner } from "shared/ui/components";
 import clsx from "clsx";
@@ -65,7 +65,7 @@ export default memo(function Table({ columns, rows, sticky }: Props) {
   );
 });
 
-const useStyles = makeStyles((theme: ITheme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       position: "relative",

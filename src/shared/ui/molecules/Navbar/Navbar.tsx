@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 import { useActions, useTypedSelector } from "shared/hooks";
 import { Button, Divider, ScrollableContentiner } from "shared/ui/components";
-import { ITheme } from "shared/ui/theme/theme";
+import { Theme } from "shared/types";
 
 import navigationConfig, { settingsConfig } from "./navigationConfig";
 import Navigation from "./Navigation";
@@ -101,7 +101,7 @@ function Navbar({ navbar, toggleNavbar, toggleSettingsbar }: Props) {
   );
 }
 
-const useStyles = makeStyles((theme: ITheme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     backdrop: {
       position: "fixed",

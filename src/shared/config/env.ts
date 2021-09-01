@@ -6,7 +6,7 @@ const getEnvVar = (key: string): any => {
   return envKey;
 };
 
-export const APP: "ROUTER" | "SERVER" = getEnvVar("VITE_APP");
+export const APP: "ROUTER" | "SERVER" | "EXAMPLE" = getEnvVar("VITE_APP");
 export const SERVER_API_URL = getEnvVar("VITE_SERVER_API_URL");
 export const ROUTER_API_URL = getEnvVar("VITE_ROUTER_API_URL");
 

@@ -2,36 +2,24 @@ import { createStore, createEffect, createEvent } from "effector";
 import { useStore } from "effector-react";
 
 import { env } from "shared/config";
-import { routerApi, serverApi } from "shared/api";
+import { exampleApi, routerApi, serverApi } from "shared/api";
 import { PING_INTERVAL } from "shared/constans";
+import { Status } from "shared/types";
 
-const { APP } = env;
-
-const API = {
-  ROUTER: routerApi,
-  SERVER: serverApi,
-};
+const API = { ROUTER: routerApi, SERVER: serverApi, EXAMPLE: exampleApi };
 
 let interval: NodeJS.Timeout;
 
 const check = createEvent();
 
 const getStatusFx = createEffect(() => {
-  return API[APP].auth.status();
+  return API[env.APP].auth.status();
 });
-
-type ROUTER = "cubic-is-not-auth" | "cubic-auth" | "wizard" | null;
-type SERVER = "user-is-not-auth" | "user-auth" | null;
-
-export type Status = ROUTER | SERVER;
 
 export const statusInitialState: Status = null;
 const $status = createStore<Status>(statusInitialState).on(
   getStatusFx.doneData,
-  (_, payload) => {
-    if (payload?.data && !Array.isArray(payload?.data)) return payload?.data;
-    if (payload?.msg) return payload?.msg;
-  }
+  (_, payload) => payload.data
 );
 
 const $isAuth = createStore<boolean>(false).on($status, (_, payload) => {

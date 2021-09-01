@@ -11,8 +11,8 @@ import {
 } from "@material-ui/core";
 import LiveHelpSharpIcon from "@material-ui/icons/LiveHelpSharp";
 
-import { ScrollableContentiner } from "shared/ui/components";
-import cvss from "shared/utils/cvss";
+import { Molec } from "shared/ui";
+import { cvss } from "shared/utils";
 
 import BodyCardList from "./components/DetailCardList";
 import DetailCardTabTemplete from "./components/DetailCardTabTemplete";
@@ -137,7 +137,7 @@ export default ({ data }: any) => {
   const renderDataCves = data?.body?.cves;
 
   return (
-    <ScrollableContentiner>
+    <Molec.ScrollableContentiner>
       <div className={classes.container}>
         {renderDataCves &&
           renderDataCves.map((el: any, idx: any) => {
@@ -179,9 +179,9 @@ export default ({ data }: any) => {
                     <div className={classes.tabsContainer}>
                       <DetailCardTabsBody tabsConfig={tabsConfig} />
                       <div className={classes.tabsSidebar}>
-                        <ScrollableContentiner>
+                        <Molec.ScrollableContentiner>
                           <BodyCardList data={dataLinks(el)} />
-                        </ScrollableContentiner>
+                        </Molec.ScrollableContentiner>
                       </div>
                     </div>
                   </div>
@@ -190,7 +190,7 @@ export default ({ data }: any) => {
             );
           })}
       </div>
-    </ScrollableContentiner>
+    </Molec.ScrollableContentiner>
   );
 };
 
